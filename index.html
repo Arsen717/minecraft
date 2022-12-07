@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft</title>
+</head>
+<body>
+
+   
+
+    <script>
+
+        let tiv = 1
+        let tiv1 = 1
+        let porc = true
+        function httpGet(theUrl){
+            
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open( "GET", theUrl, false ); 
+            xmlHttp.send( null );
+            return xmlHttp.responseText;
+            }
+            let z = JSON.parse(httpGet('http://localhost:4000')).arr;
+            let a = JSON.parse(httpGet('http://localhost:4000')).qanak;
+        
+
+        function chekkeypress(key){
+            if(key.keyCode == 65){
+             tiv1--
+             console.log("a");
+             if(tiv1 >= 1){
+                return creattable()
+
+             }
+             tiv1++
+            }
+            else if(key.keyCode == 68){
+            tiv1++
+            console.log("d");
+            if(tiv1 < a){
+                return creattable()
+
+             }
+             tiv1--
+            }
+
+            else if(key.keyCode == 87){
+                console.log("w");
+             tiv--
+           if(tiv >= 1){
+                return creattable()
+
+             }
+             tiv++
+            }
+        
+
+            else if(key.keyCode == 83){
+            tiv++
+            console.log("s");
+            if(tiv <= a){
+            return creattable()
+
+             }
+             tiv--
+            }
+        }
+
+
+
+        function creattable(){
+
+        table = `<table width = '600px' height = '600px' style = 'border: 1px solid black'> `
+            let m = 0
+        for (var i = 1; i <= a; i++) {
+            table += `<tr >`;
+            for (var j = 1; j <= a; j++) {
+                let d = parseInt(z[m])
+                if(i == tiv && j == tiv1){
+                   table += `<td style="background-color : black">`
+                    j++ 
+                }
+
+                 if (z[m] == 0){
+                        table += `<td style = "background-color :blue"> `
+                        
+                } 
+                else if (z[m] == 1 || z[m] == 2 || z[m] == 3 ){
+                        table += `<td style = "background-color :brown"> `
+                        
+                }
+               else{
+                        table += `<td style = "background-color :grey">`
+                        
+                }
+                
+                m ++
+              table += `</td>`                  
+            } 
+            table += `</tr>`   
+            
+           
+        }
+            table += `</table>`
+            document.write(table)
+        document.addEventListener("keydown", chekkeypress, false)
+
+    }
+    
+    creattable()
+        
+    </script>
+
+</body>
+</html>
